@@ -1,0 +1,45 @@
+<div class="wrapper">
+  <div class="sign-up-form">
+    <mat-card>
+      <mat-card-title>Sign in to Continue </mat-card-title>
+      <form [formGroup]="form" (ngSubmit)="logUserIn()">
+        <mat-card-content>
+          <div class="login-form">
+            <mat-form-field class="example-full-width">
+              <mat-label>Email</mat-label>
+              <input
+                formControlName="email"
+                type="email"
+                matInput
+                placeholder="Please enter your email"
+              />
+              <mat-error *ngIf="form.get('email').hasError('required')"
+                >The email is required.</mat-error
+              >
+              <mat-error *ngIf="form.get('email').hasError('email')"
+                >You must enter a valid email.</mat-error
+              >
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Password</mat-label>
+              <input
+                formControlName="password"
+                type="password"
+                matInput
+                placeholder="Please type in your password"
+              />
+              <mat-error *ngIf="form.get('password').hasError('required')"
+                >The password is required.</mat-error
+              >
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+        <mat-card-footer>
+          <button mat-raised-button color="primary" [disabled]="form.invalid">
+            Sign In
+          </button>
+        </mat-card-footer>
+      </form>
+    </mat-card>
+  </div>
+</div>

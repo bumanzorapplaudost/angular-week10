@@ -1,0 +1,28 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 65px);
+}
+
+.sign-up-form {
+  min-height: 200px;
+}
+
+.mat-card {
+  margin: 0 auto;
+  min-width: 400px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-card-content {
+  padding: 16px 0;
+}
+
+.mat-card-footer {
+  padding: 16px;
+}

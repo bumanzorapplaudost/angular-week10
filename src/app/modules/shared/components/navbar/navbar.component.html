@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button
+      mat-icon-button
+      *ngIf="authStatus$ | async"
+      (click)="toggleSidenav()"
+    >
+      <mat-icon class="icon" aria-hidden="false" aria-label="Menu Icon"
+        >menu</mat-icon
+      >
+    </button>
+    <span>ElvisTeck</span>
+    <span class="spacer"></span>
+    <input type="text" class="search-input" placeholder="Search..." />
+    <button mat-icon-button>
+      <mat-icon class="icon" aria-hidden="false" aria-label="Go to cart"
+        >shopping_cart</mat-icon
+      >
+    </button>
+    <button mat-icon-button *ngIf="authStatus$ | async">
+      <mat-icon class="icon" aria-hidden="false" aria-label="Profile icon"
+        >supervised_user_circle</mat-icon
+      >
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>

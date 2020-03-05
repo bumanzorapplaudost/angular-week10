@@ -1,0 +1,32 @@
+.icon {
+  padding: 0 14px;
+}
+
+button {
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.search-input {
+  outline: 0;
+  font-family: inherit;
+  border-radius: 16px;
+  background: #fff;
+  color: #333;
+  border: solid 1px #ccc;
+  font-size: 14px;
+  padding: 8px 16px;
+  width: 160px;
+  transition: all 0.3s;
+  margin-right: 16px;
+
+  &:focus {
+    width: 200px;
+  }
+}
