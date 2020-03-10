@@ -14,8 +14,6 @@ export class SidenavService {
   }
 
   toggleSidenav() {
-    console.log('toggle sidenav');
-    console.log(this.sidenavStatus.value);
     this.sidenavStatus.next(!this.sidenavStatus.value);
   }
 }

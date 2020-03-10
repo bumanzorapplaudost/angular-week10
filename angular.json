@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "angular-week10"
+  "defaultProject": "angular-week10",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

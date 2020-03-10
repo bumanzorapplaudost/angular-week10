@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendBaseUrl: 'n'
+  backendBaseUrl: 'https://trainee-program.herokuapp.com/api/v1/'
 };
 
 /*

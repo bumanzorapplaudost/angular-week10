@@ -1,4 +1,9 @@
-<mat-action-list>
-  <button mat-list-item>Save</button>
-  <button mat-list-item>Undo</button>
+<mat-action-list *ngIf="categoryList$ | async as categoryList">
+  <a
+    [routerLink]="category.slug"
+    mat-list-item
+    *ngFor="let category of categoryList"
+  >
+    {{ category.name }}
+  </a>
 </mat-action-list>

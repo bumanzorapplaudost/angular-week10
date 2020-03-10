@@ -5,11 +5,11 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthStatusService {
-  auth: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  auth: BehaviorSubject<boolean> = new BehaviorSubject(false);
   private subscription: Subscription;
 
   constructor() {
-    // select from store to update, for now it will be false by default.
+    this.auth.next(!!localStorage.getItem('token'));
   }
 
   get authStatus(): Observable<boolean> {

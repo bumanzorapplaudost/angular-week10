@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  backendBaseUrl: 'url',
+  backendBaseUrl: 'https://trainee-program.herokuapp.com/api/v1/',
 };

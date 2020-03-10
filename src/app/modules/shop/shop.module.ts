@@ -8,6 +8,9 @@ import { CartComponent } from './components/cart/cart.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { MatListModule } from '@angular/material/list';
+import { StoreModule } from '@ngrx/store';
+import * as fromShop from '../../reducers';
+import { HttpClientModule } from '@angular/common/http';
 
 const components = [
   ProductListComponent,
@@ -19,6 +22,13 @@ const components = [
 
 @NgModule({
   declarations: [...components],
-  imports: [CommonModule, ShopRoutingModule, MatSidenavModule, MatListModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    MatSidenavModule,
+    MatListModule,
+    ShopRoutingModule,
+    StoreModule.forFeature(fromShop.shopFeatureKey, fromShop.reducers),
+  ],
 })
 export class ShopModule {}
