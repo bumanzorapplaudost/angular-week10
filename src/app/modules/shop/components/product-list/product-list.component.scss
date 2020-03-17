@@ -1,0 +1,16 @@
+.wrapper {
+  display: grid;
+  grid-gap: 24px;
+  align-items: stretch;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+@media (min-width: 500px) and (max-width: 666px) {
+  .wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.no-results {
+  font-style: italic;
+}

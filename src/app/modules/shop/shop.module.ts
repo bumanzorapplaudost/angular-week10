@@ -4,13 +4,23 @@ import { MainComponent } from './components/main/main.component';
 import { ShopRoutingModule } from './shop-routing.module';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
-import { CartComponent } from './components/cart/cart.component';
+import { CartComponent } from '../cart/components/cart/cart.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { MatListModule } from '@angular/material/list';
 import { StoreModule } from '@ngrx/store';
-import * as fromShop from '../../reducers';
-import { HttpClientModule } from '@angular/common/http';
+import * as fromShop from './reducers/shop.reducers';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { ShopEffects } from './reducers/shop.effects';
+import { ProductsService } from './services/products.service';
+import { ProductRequestsService } from './services/product-requests.service';
+import { ProductComponent } from './components/product/product.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { TransformObjectInterceptor } from '../shared/interceptors/transform-object.interceptor';
+import { ReactionButtonsComponent } from './components/reaction-buttons/reaction-buttons.component';
 
 const components = [
   ProductListComponent,
@@ -18,17 +28,31 @@ const components = [
   CategoryListComponent,
   CartComponent,
   MainComponent,
+  ProductComponent,
 ];
 
 @NgModule({
-  declarations: [...components],
+  declarations: [...components, ReactionButtonsComponent],
   imports: [
     CommonModule,
+    EffectsModule.forFeature([ShopEffects]),
     HttpClientModule,
-    MatSidenavModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
     MatListModule,
+    MatSidenavModule,
     ShopRoutingModule,
-    StoreModule.forFeature(fromShop.shopFeatureKey, fromShop.reducers),
+    StoreModule.forFeature(fromShop.shopFeatureKey, fromShop.shopReducers),
+  ],
+  providers: [
+    ProductsService,
+    ProductRequestsService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TransformObjectInterceptor,
+      multi: true,
+    },
   ],
 })
 export class ShopModule {}

@@ -6,9 +6,7 @@ import { RequestResponse } from '../../shared/models/request-response.model';
 import { Product } from '../models/product.model';
 import { LoggedInUser } from '../../shared/models/logged-in-user.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class ProductRequestsService {
   includes = '?include=image_attachment.blob,category,master';
   url = environment.backendBaseUrl;

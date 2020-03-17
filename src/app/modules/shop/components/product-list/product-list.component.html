@@ -1,4 +1,6 @@
-<!-- <div *ngIf="filteredItems$ | async as filteredItems; else somethingElse"></div>
-
-<ng-template #somethingElse> </ng-template>
- -->
+<div class="wrapper" *ngIf="productList$ | async as products">
+  <app-product
+    *ngFor="let product of products"
+    [product]="product"
+  ></app-product>
+</div>

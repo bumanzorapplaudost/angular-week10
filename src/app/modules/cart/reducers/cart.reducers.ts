@@ -13,7 +13,7 @@ export const initialCartState = cartAdapter.getInitialState();
 
 export const cartReducers = createReducer(
   initialCartState,
-  on(cartActions.purchaseProduct, (state, action) => {
+  on(cartActions.addProductToCart, (state, action) => {
     return cartAdapter.addOne(action.payload, state);
   }),
   on(cartActions.removeProduct, (state, action) => {

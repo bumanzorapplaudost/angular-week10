@@ -1,0 +1,25 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.flex {
+  display: flex;
+}
+
+a.product-link {
+  text-decoration: none;
+  color: #333;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.product-image {
+  max-height: 160px;
+  align-self: center;
+}
+
+.add-to-cart-btn {
+  align-self: flex-end;
+}

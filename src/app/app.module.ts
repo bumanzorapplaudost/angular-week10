@@ -13,6 +13,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TransformObjectInterceptor } from './modules/shared/interceptors/transform-object.interceptor';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,6 +35,8 @@ import { TransformObjectInterceptor } from './modules/shared/interceptors/transf
       maxAge: 25,
       logOnly: environment.production,
     }),
+    EffectsModule,
+    EffectsModule.forRoot([])
   ],
   providers: [
     {

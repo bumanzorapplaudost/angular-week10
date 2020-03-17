@@ -20,21 +20,27 @@ export interface ShopState extends EntityState<Product> {
   pagination: PageObject<number>;
 }
 
-export const initialShopState: ShopState = {
-  ids: [],
-  entities: {},
+export const shopAdapter = createEntityAdapter<Product>();
+
+export const initialShopState = shopAdapter.getInitialState({
   currentProduct: null,
   filteredIds: [],
   pagination: {},
-};
-
-export const shopAdapter = createEntityAdapter<Product>();
-
-export const initialShopState = shopAdapter.getInitialState();
+});
 
 export const shopReducers = createReducer(
   initialShopState,
   on(shopActions.getProductsSuccessAction, (state, action) => {
-    return { ...state };
+    const newState = {
+      ...state,
+      pagination: {
+        ...state.pagination,
+        [action.payload.paginationInfo.currentPage]: action.payload.ids,
+      },
+    };
+    return shopAdapter.upsertMany(action.payload.productList, newState);
+  }),
+  on(shopActions.getSingleProductAction, (state, action) => {
+    return { ...state, currentProduct: action.payload };
   })
 );

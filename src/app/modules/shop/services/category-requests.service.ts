@@ -16,7 +16,7 @@ export class CategoryRequestsService {
 
   getCategories(): Observable<RequestResponse<Category[]>> {
     return this.httpClient.get<RequestResponse<Category[]>>(
-      `${this.url}/categories?sort=name asc`
+      `${this.url}/categories?sort=name asc&page[size=0]`
     );
   }
 }

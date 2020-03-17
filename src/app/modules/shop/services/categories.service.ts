@@ -8,10 +8,10 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class CategoriesService {
-  constructor(private categorieRequestsService: CategoryRequestsService) {}
+  constructor(private categoriesRequestsService: CategoryRequestsService) {}
 
   listCategories(): Observable<Category[]> {
-    return this.categorieRequestsService
+    return this.categoriesRequestsService
       .getCategories()
       .pipe(map((response) => response.data));
   }

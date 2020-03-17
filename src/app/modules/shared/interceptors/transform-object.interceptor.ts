@@ -1,44 +1,44 @@
 import { Injectable } from '@angular/core';
 import {
-  HttpInterceptor,
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpResponse,
+  HttpResponse, HttpInterceptor,
 } from '@angular/common/http';
-import * as lodash from 'lodash';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { forEach, isPlainObject, camelCase } from 'lodash';
 
 @Injectable()
 export class TransformObjectInterceptor implements HttpInterceptor {
+  objectKeysToCamelCase(objectToConvert: any) {
+    const camelCaseObject = {};
+    forEach(objectToConvert, (value, key) => {
+      if (isPlainObject(value)) {
+        value = this.objectKeysToCamelCase(value);
+      } else if (Array.isArray(value)) {
+        value = value.map((mappedValue) =>
+          this.objectKeysToCamelCase(mappedValue)
+        );
+      }
+      camelCaseObject[camelCase(key)] = value;
+    });
+    return camelCaseObject;
+  }
+
   intercept(
-    req: HttpRequest<any>,
+    request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(
+    return next.handle(request).pipe(
       map((response: HttpEvent<any>) => {
         if (response instanceof HttpResponse) {
-          const camelCaseObject = this.objectKeysToCamelCase(response.body);
-          const modifiedEvent = response.clone({ body: camelCaseObject });
-          return modifiedEvent;
+          return response.clone({
+            body: this.objectKeysToCamelCase(response.body),
+          });
         }
         return response;
       })
     );
-  }
-
-  objectKeysToCamelCase(snakeCaseObject: any) {
-    const camelCaseObject = {};
-    lodash.forEach(snakeCaseObject, (value, key) => {
-      if (lodash.isPlainObject(value)) {
-        value = this.objectKeysToCamelCase(value);
-      }
-      if (Array.isArray(value)) {
-        value.map((val) => this.objectKeysToCamelCase(val));
-      }
-      camelCaseObject[lodash.camelCase(key)] = value;
-    });
-    return camelCaseObject;
   }
 }

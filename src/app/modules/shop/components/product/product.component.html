@@ -1,0 +1,41 @@
+<mat-card class="product-card">
+  <img
+    alt="Product picture..."
+    mat-card-image
+    class="product-image"
+    [src]="
+      product.image?.url ||
+      'https://www.agora-gallery.com/advice/wp-content/uploads/2015/10/image-placeholder-300x200.png'
+    "
+  />
+  <mat-card-header class="m0">
+    <mat-card-title
+      ><a class="product-link" [routerLink]="['/products', product.id]">{{
+        product.name
+      }}</a></mat-card-title
+    >
+    <mat-card-subtitle>{{ product.category.name }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="space-between">
+    <h1>{{ product.master.price | currency }}</h1>
+    <p>{{ product.description }}</p>
+  </mat-card-content>
+  <mat-card-actions class="flex">
+    <app-reaction-buttons
+      [productId]="product.id"
+      [reaction]="product?.myReaction"
+      [likes]="product.likesUpCount"
+      [dislikes]="product.likesDownCount"
+    ></app-reaction-buttons>
+    <span class="spacer"></span>
+    <button
+      class="add-to-cart-btn"
+      mat-raised-button
+      color="primary"
+      (click)="addProductToCart()"
+      [disabled]="product.master.stock < 1"
+    >
+      <mat-icon>add_shopping_cart</mat-icon> Add
+    </button>
+  </mat-card-actions>
+</mat-card>
