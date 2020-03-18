@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../models/product.model';
 import { ProductRequestsService } from './product-requests.service';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { RequestResponse } from '../../shared/models/request-response.model';
 
 @Injectable()

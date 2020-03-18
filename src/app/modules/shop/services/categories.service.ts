@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CategoryRequestsService } from './category-requests.service';
 import { Observable } from 'rxjs';
-import { Category } from '../models/category.model';
 import { map } from 'rxjs/operators';
+import { CategoryRequestsService } from './category-requests.service';
+import { Category } from '../models/category.model';
 
 @Injectable({
   providedIn: 'root',

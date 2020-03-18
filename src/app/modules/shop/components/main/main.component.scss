@@ -10,23 +10,19 @@
 }
 
 ::ng-deep {
-  /* width */
   &::-webkit-scrollbar {
     width: 6px;
   }
 
-  /* Track */
   &::-webkit-scrollbar-track {
     background: #fafafa;
   }
 
-  /* Handle */
   &::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background: #ddd;
   }
 
-  /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover {
     background: #bbb;
   }

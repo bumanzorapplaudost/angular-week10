@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 const components = [LayoutComponent, NavbarComponent];
 
 @NgModule({
-  declarations: [components],
+  declarations: [...components],
   imports: [
     CommonModule,
     MatToolbarModule,

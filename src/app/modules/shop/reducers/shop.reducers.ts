@@ -1,12 +1,4 @@
-import {
-  ActionReducer,
-  ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
-  MetaReducer,
-  createReducer,
-  on,
-} from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import { Product } from '../models/product.model';
 import { shopActions } from './shop-action-types';

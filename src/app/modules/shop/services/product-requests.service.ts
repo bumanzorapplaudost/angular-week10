@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { RequestResponse } from '../../shared/models/request-response.model';
 import { Product } from '../models/product.model';
 import { LoggedInUser } from '../../shared/models/logged-in-user.model';

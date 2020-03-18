@@ -19,4 +19,3 @@ export const getSingleProductAction = createAction(
   '[Shop] Get Single Product',
   props<{ payload: Product }>()
 );
-

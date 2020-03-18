@@ -19,8 +19,4 @@ export class AuthStatusService {
   updateStatus(newStatus: boolean): void {
     this.auth.next(newStatus);
   }
-
-  unsubscribe(): void {
-    this.subscription.unsubscribe();
-  }
 }

@@ -29,10 +29,19 @@ const components = [
   CartComponent,
   MainComponent,
   ProductComponent,
+  ReactionButtonsComponent,
+];
+
+const providers = [
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TransformObjectInterceptor,
+    multi: true,
+  },
 ];
 
 @NgModule({
-  declarations: [...components, ReactionButtonsComponent],
+  declarations: [...components],
   imports: [
     CommonModule,
     EffectsModule.forFeature([ShopEffects]),
@@ -45,14 +54,6 @@ const components = [
     ShopRoutingModule,
     StoreModule.forFeature(fromShop.shopFeatureKey, fromShop.shopReducers),
   ],
-  providers: [
-    ProductsService,
-    ProductRequestsService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TransformObjectInterceptor,
-      multi: true,
-    },
-  ],
+  providers: [...providers, ProductsService, ProductRequestsService],
 })
 export class ShopModule {}

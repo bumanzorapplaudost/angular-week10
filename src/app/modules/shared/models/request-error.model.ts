@@ -1,4 +1,4 @@
 export class RequestError {
-  field_name: string;
+  fieldName: string;
   messages: string[];
 }

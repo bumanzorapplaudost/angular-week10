@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,6 +14,14 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TransformObjectInterceptor } from './modules/shared/interceptors/transform-object.interceptor';
 import { EffectsModule } from '@ngrx/effects';
 
+const providers = [
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TransformObjectInterceptor,
+    multi: true,
+  },
+];
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -22,6 +29,8 @@ import { EffectsModule } from '@ngrx/effects';
     AuthModule,
     BrowserModule,
     BrowserAnimationsModule,
+    EffectsModule,
+    EffectsModule.forRoot([]),
     MatButtonModule,
     SharedModule,
     StoreModule.forRoot(reducers, {
@@ -35,16 +44,8 @@ import { EffectsModule } from '@ngrx/effects';
       maxAge: 25,
       logOnly: environment.production,
     }),
-    EffectsModule,
-    EffectsModule.forRoot([])
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TransformObjectInterceptor,
-      multi: true,
-    },
-  ],
+  providers: [...providers],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
