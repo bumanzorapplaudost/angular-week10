@@ -25,4 +25,17 @@ export class ProductRequestsService {
     const options = `?filter[user_id_eq]=${userId}`;
     return this.httpClient.get(`${this.url}likes${options}`);
   }
+
+  reactToProduct(
+    kind: number,
+    productId: number
+  ): Observable<RequestResponse<Product>> {
+    const data = {
+      data: { kind, product_id: productId },
+    };
+    return this.httpClient.post<RequestResponse<Product>>(
+      `${this.url}likes`,
+      data
+    );
+  }
 }

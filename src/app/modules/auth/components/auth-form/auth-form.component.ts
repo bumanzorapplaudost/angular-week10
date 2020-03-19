@@ -20,6 +20,7 @@ export class AuthFormComponent implements OnDestroy {
     private authService: AuthService,
     private router: Router
   ) {
+    console.log('entered');
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],

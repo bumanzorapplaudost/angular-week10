@@ -17,5 +17,5 @@ export const getProductsSuccessAction = createAction(
 
 export const getSingleProductAction = createAction(
   '[Shop] Get Single Product',
-  props<{ payload: Product }>()
+  props<{ productId: number }>()
 );

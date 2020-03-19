@@ -1,0 +1,53 @@
+<div class="product-container" *ngIf="product">
+  <h1>
+    {{ product.name }}
+  </h1>
+  <div class="product-picture">
+    <img
+      class="product-main-picture"
+      [src]="
+        product.image?.url ||
+        'https://www.agora-gallery.com/advice/wp-content/uploads/2015/10/image-placeholder-300x200.png'
+      "
+      alt=""
+    />
+  </div>
+  <div class="product-options">
+    <p class="product-category">{{ product.category.name | uppercase }}</p>
+    <p class="product-description">
+      {{ product.description }}
+    </p>
+    <h3>{{ product.master.price | currency }}</h3>
+    <app-reaction-buttons
+      [likes]="product.likesUpCount"
+      [dislikes]="product.likesDownCount"
+      [productId]="product.id"
+    ></app-reaction-buttons>
+    <mat-form-field floatLabel="never">
+      <div class="quantity-options">
+        <button mat-stroked-button (click)="decreaseQuantity()" color="primary">
+          <mat-icon>remove</mat-icon>
+        </button>
+        &nbsp;
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Qty"
+            min="1"
+            [(ngModel)]="quantity"
+            [max]="product.master.stock"
+            readonly
+            type="number"
+          />
+        </mat-form-field>
+        &nbsp;
+        <button (click)="increaseQuantity()" mat-stroked-button color="primary">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </mat-form-field>
+    <button mat-raised-button color="accent" (click)="addToCart()">
+      <mat-icon>add_shopping_cart</mat-icon> ADD TO CART
+    </button>
+  </div>
+</div>

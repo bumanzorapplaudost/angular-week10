@@ -13,7 +13,7 @@ const routes: Routes = [
       {
         path: 'auth',
         component: AuthFormComponent,
-        canActivate: [IsAuthenticatedGuard],
+        canLoad: [IsAuthenticatedGuard],
       },
       {
         path: 'shop',

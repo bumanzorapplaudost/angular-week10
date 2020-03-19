@@ -16,5 +16,5 @@ export class Product {
   category: Category;
   image: ProductImage;
   myReaction?: number;
-  purchasedQty?: number;
+  purchasedQuantity?: number;
 }

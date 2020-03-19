@@ -15,10 +15,9 @@ export class ProductsService {
       .pipe(map((response) => response));
   }
 
-  toggleProductReaction(
-    type: number,
-    product: number
-  ): Observable<RequestResponse<Product>> {
-    return;
+  toggleProductReaction(type: number, productId: number): Observable<Product> {
+    return this.productRequestsService
+      .reactToProduct(type, productId)
+      .pipe(map((response) => response.data));
   }
 }

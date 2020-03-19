@@ -3,8 +3,8 @@ import { ProductsService } from '../../services/products.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../store/states/app.state';
 import { Subject } from 'rxjs';
-import { AuthStatusService } from '../../../shared/services/auth-status.service';
 import { takeUntil } from 'rxjs/operators';
+import { AuthStatusService } from '../../../shared/services/auth-status.service';
 import { ThemePalette } from '@angular/material/core';
 
 @Component({
@@ -15,8 +15,8 @@ import { ThemePalette } from '@angular/material/core';
 export class ReactionButtonsComponent implements OnInit, OnDestroy {
   unsubscribe = new Subject();
   isAuthCorrect = false;
-  thumbUpColor = '' as ThemePalette;
-  thumbDownColor = '' as ThemePalette;
+  thumbUpColor: ThemePalette;
+  thumbDownColor: ThemePalette;
 
   @Input() productId: number;
   @Input() likes: number;
@@ -24,8 +24,8 @@ export class ReactionButtonsComponent implements OnInit, OnDestroy {
   @Input() set reaction(value) {
     if (value !== -1 && value !== undefined) {
       value === 0
-        ? (this.thumbDownColor = 'accent' as ThemePalette)
-        : (this.thumbUpColor = 'accent' as ThemePalette);
+        ? (this.thumbDownColor = 'accent')
+        : (this.thumbUpColor = 'accent');
     }
   }
 
@@ -43,23 +43,24 @@ export class ReactionButtonsComponent implements OnInit, OnDestroy {
 
   likeButton(type: string = 'like') {
     const likeType = type === 'like' ? 1 : 0;
-    if ((this.thumbDownColor as string) === '' && likeType === 0) {
-      if ((this.thumbUpColor as string) !== '') {
+    if (this.thumbDownColor === undefined && likeType === 0) {
+      if (this.thumbUpColor !== undefined) {
         this.likes--;
       }
       this.dislikes++;
     }
-    if ((this.thumbUpColor as string) === '' && likeType === 1) {
-      if ((this.thumbDownColor as string) !== '') {
+    if (this.thumbUpColor === undefined && likeType === 1) {
+      if (this.thumbDownColor !== undefined) {
         this.dislikes--;
       }
       this.likes++;
     }
+
     this.productsService
       .toggleProductReaction(likeType, this.productId)
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(() => {
-        this.thumbDownColor = this.thumbUpColor = '' as ThemePalette;
+        this.thumbDownColor = this.thumbUpColor = undefined;
         likeType === 1
           ? (this.thumbUpColor = 'accent')
           : (this.thumbDownColor = 'accent');
